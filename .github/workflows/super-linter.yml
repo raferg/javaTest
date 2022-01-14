@@ -24,7 +24,8 @@ jobs:
       - name: Lint Code Base
         uses: docker://github/super-linter:latest
         env:
-          JAVA_FILE_NAME: /.checkstyle/checkstyle.xml
+          LINTER_RULES_PATH: .
+          JAVA_FILE_NAME: .checkstyle/checkstyle.xml
           VALIDATE_JAVA: true
           VALIDATE_ALL_CODEBASE: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

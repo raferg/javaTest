@@ -3,7 +3,7 @@ public class RunMe {
   /**
    * Main method for saying hello to the world.
    */
-  public static void main(String[] args) {
+  public static void main(final String[] args) {
     System.out.println("Hello World");
   }
 }

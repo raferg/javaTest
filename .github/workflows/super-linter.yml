@@ -24,6 +24,7 @@ jobs:
       - name: Lint Code Base
         uses: docker://github/super-linter:latest
         env:
+          JAVA_FILE_NAME: .checkstyle/checkstyle.xml
           VALIDATE_JAVA: true
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: master

@@ -25,7 +25,7 @@
     <!-- Compile the Java code from ${src} into ${build} -->
     <javac srcdir="${src}" destdir="${build}">
 			<compilerarg line="${javac.compiler.args}"/>      
-    </javac/>
+    </javac>
   </target>
 
   <target name="dist" depends="compile"

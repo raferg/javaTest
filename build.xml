@@ -25,7 +25,7 @@
 
   <target name="compile" depends="init" description="compile the source">
     <!-- Compile the Java code from ${src} into ${build} -->
-    <javac fork="true" srcdir="${src}" destdir="${build}">
+    <javac fork="true" includeantruntime="true" srcdir="${src}" destdir="${build}">
       <compilerarg line="${javac.compiler.args}"/>      
     </javac>
   </target>

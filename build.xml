@@ -4,12 +4,13 @@
   </description>
    
   <resources id='javac.compiler.args.parts.collection'>
-    <string value="--add-modules jdk.management.jfr" />
+    <string value="--add-modules jdk.management" />
+		<string value="--add-exports java.desktop/sun.awt=ALL-UNNAMED" />    
   </resources>
 
-  <pathconvert pathsep=' ' refid='javac.compiler.args.parts.collection' property='javac.compiler.args.parts' />
+	<pathconvert pathsep=' ' refid='javac.compiler.args.parts.collection' property='javac.compiler.args.parts' />
 
-  <property name="javac.compiler.args" value="-version ${javac.compiler.args.parts}"/>
+	<property name="javac.compiler.args" value="-version ${javac.compiler.args.parts}"/>  
   
   <property name="src" location="src"/>
   <property name="build" location="build"/>

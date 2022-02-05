@@ -23,7 +23,7 @@
   <target name="compile" depends="init" description="compile the source">
     <!-- Compile the Java code from ${src} into ${build} -->
     <javac srcdir="${src}" destdir="${build}">
-			<compilerarg line=""--add-modules jdk.management.jfr"/>      
+      <compilerarg line="--add-modules jdk.management.jfr"/>      
     </javac>
   </target>
 

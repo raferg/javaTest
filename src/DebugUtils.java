@@ -3,6 +3,8 @@ import javax.management.MBeanServer;
 
 import java.lang.management.ManagementFactory;
 
+import java.io.IOException;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,8 +47,8 @@ public class DebugUtils {
                 put("maxSize", Long.toString(1024 * 1024 * 1024));
                 put("dumpOnExit", "true");
                 put("disk", "true");
-                put("duration", MAX_COUNT + " s");
-                put("destination", getFilename(".jfr"));
+                put("duration", "60 s");
+                put("destination", "RECORDING.jfr");
             }
         };
     }

@@ -7,7 +7,7 @@
     <string value="--add-modules jdk.management.jfr" />
   </resources>
 
-  <!--property name="javac.compiler.args" value="-version ${javac.compiler.args.parts}"/-->
+  <property name="javac.compiler.args" value="-version ${javac.compiler.args.parts}"/>
   
   <property name="src" location="src"/>
   <property name="build" location="build"/>
@@ -23,7 +23,7 @@
   <target name="compile" depends="init" description="compile the source">
     <!-- Compile the Java code from ${src} into ${build} -->
     <javac srcdir="${src}" destdir="${build}">
-      <compilerarg line="--add-modules jdk.management.jfr"/>      
+      <compilerarg line="${javac.compiler.args}"/>      
     </javac>
   </target>
 

@@ -3,13 +3,11 @@
     simple example build file
   </description>
    
-  <resources id='javac.compiler.args.parts.collection'>
-    <string value="--add-modules jdk.management" />
+  <resources id='javac.compiler.args.parts'>
+    <string value="--add-modules jdk.management.jfr" />
   </resources>
 
-  <pathconvert pathsep=' ' refid='javac.compiler.args.parts.collection' property='javac.compiler.args.parts' />
-
-  <property name="javac.compiler.args" value="${javac.compiler.args.parts}"/>  
+  <property name="javac.compiler.args" value="-version ${javac.compiler.args.parts}"/>
   
   <property name="src" location="src"/>
   <property name="build" location="build"/>
@@ -24,7 +22,7 @@
 
   <target name="compile" depends="init" description="compile the source">
     <!-- Compile the Java code from ${src} into ${build} -->
-    <javac fork="true" includeantruntime="true" srcdir="${src}" destdir="${build}">
+    <javac srcdir="${src}" destdir="${build}">
       <compilerarg line="${javac.compiler.args}"/>      
     </javac>
   </target>

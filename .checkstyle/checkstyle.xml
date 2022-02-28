@@ -48,13 +48,13 @@
   <!-- See https://checkstyle.org/config_whitespace.html -->
   <module name="FileTabCharacter"/>
   
-  <module name="Regexp">
-    <property name="format" value="[ \t]+$"/>
-    <property name="illegalPattern" value="true"/>
-    <property name="message" value="Trailing whitespace"/>
-  </module>
-        
   <module name="TreeWalker">
+
+    <module name="Regexp">
+      <property name="format" value="[ \t]+$"/>
+      <property name="illegalPattern" value="true"/>
+      <property name="message" value="Trailing whitespace"/>
+    </module>
 
     <!-- Checks for whitespace                               -->
     <!-- See https://checkstyle.org/config_whitespace.html -->

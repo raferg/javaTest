@@ -21,12 +21,12 @@ jobs:
           # Full git history is needed to get a proper list of changed files within `super-linter`
           fetch-depth: 0
 
-      - name: Lint Code Base
-        uses: docker://github/super-linter:slim-v4
-        env:
-          LINTER_RULES_PATH: .
-          JAVA_FILE_NAME: .checkstyle/checkstyle.xml
-          VALIDATE_JAVA: true
-          VALIDATE_XML: true
-          VALIDATE_ALL_CODEBASE: false
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run check style
+        uses: nikitasavinov/checkstyle-action@master
+        with:          
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          checkstyle_config: .checkstyle/checkstyle.xml
+          reporter: 'github-pr-check'
+          tool_name: 'testtool'
+
+          

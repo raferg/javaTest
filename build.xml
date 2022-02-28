@@ -4,10 +4,8 @@
   </description>
    
 	<resources id='javac.compiler.args.parts.collection'>
-    <string value="--add-modules jdk.jfr" />
 		<string value="--add-modules jdk.httpserver" />
 		<string value="--add-modules jdk.management" />
-		<string value="--add-modules jdk.management.jfr" />
 	</resources>
 	<pathconvert pathsep=' ' refid='javac.compiler.args.parts.collection' property='javac.compiler.args.parts' />
 

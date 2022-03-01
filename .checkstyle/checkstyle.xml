@@ -22,7 +22,7 @@
 
   <module name="TreeWalker">
     <module name="Regexp">
-      <property name="format" value="[ \t]+$"/>
+      <property name="format" value="[ ]+$"/>
       <property name="illegalPattern" value="true"/>
       <property name="message" value="Trailing whitespace"/>
     </module>

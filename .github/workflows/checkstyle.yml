@@ -20,6 +20,7 @@ jobs:
           fetch-depth: 0
 
       - name: Run check style
+        id: checkStyle
         uses: raferg/checkstyle-action@master
         with:          
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -28,3 +29,6 @@ jobs:
           level: error
           fail_on_error: true
           filter_mode: added
+      
+      - name: echo stuff out
+        run: echo "${{ steps.checkStyle.checkstyle_stats }}"

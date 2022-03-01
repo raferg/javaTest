@@ -20,10 +20,6 @@
     <property name="optional" value="true"/>
   </module>
 
-  <module name="FileTabCharacter">
-    <property name="fileExtensions" value="java, xml"/>
-  </module>
-
   <module name="TreeWalker">
     <module name="Regexp">
       <property name="format" value="[ \t]+$"/>

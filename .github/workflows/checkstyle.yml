@@ -26,4 +26,4 @@ jobs:
           checkstyle_config: .checkstyle/checkstyle.xml
           tool_name: 'SPACES CHECK with checkstyle'
           level: warning
-          filter_mode: diff_context
+          filter_mode: added

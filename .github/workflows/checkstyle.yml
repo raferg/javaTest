@@ -31,5 +31,5 @@ jobs:
           filter_mode: added
       
       - name: echo stuff out
-        run: echo "${{ steps.checkStyle.checkstyle_stats }}"
+        run: echo "${{ steps.checkStyle.outputs.checkstyle_stats }}"
         shell: bash

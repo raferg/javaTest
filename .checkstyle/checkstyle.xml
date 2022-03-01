@@ -32,8 +32,8 @@
     </module>
     
     <module name="RegexpSinglelineJava">
-      <property name="format" value="\t*"/>
-      <property name="message" value="Indent must use not tab characters"/>
+      <property name="format" value="(.*?)\t"/>
+      <property name="message" value="Tabs in line"/>
     </module>
   </module>
 

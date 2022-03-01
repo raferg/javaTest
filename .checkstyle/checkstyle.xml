@@ -30,6 +30,11 @@
       <property name="illegalPattern" value="true"/>
       <property name="message" value="Trailing whitespace"/>
     </module>
+    
+    <module name="RegexpSinglelineJava">
+      <property name="format" value="\t*"/>
+      <property name="message" value="Indent must use not tab characters"/>
+    </module>
   </module>
 
 </module>

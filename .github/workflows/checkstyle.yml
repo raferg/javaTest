@@ -32,3 +32,4 @@ jobs:
       
       - name: echo stuff out
         run: echo "${{ steps.checkStyle.checkstyle_stats }}"
+        shell: bash

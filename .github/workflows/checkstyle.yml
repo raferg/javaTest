@@ -25,5 +25,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           checkstyle_config: .checkstyle/checkstyle.xml
           tool_name: 'SPACES CHECK with checkstyle'
-          level: warning
+          level: error
+          fail_on_error: true
           filter_mode: added

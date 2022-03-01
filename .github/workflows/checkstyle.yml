@@ -30,6 +30,15 @@ jobs:
           fail_on_error: true
           filter_mode: added
       
-      - name: echo stuff out
-        run: echo "${{ steps.checkStyle.outputs.checkstyle_stats }}"
-        shell: bash
+      #- name: echo stuff out
+      #  run: echo "${{ steps.checkStyle.outputs.checkstyle_stats }}"
+      #  shell: bash
+      
+      - name: Set the value
+        id: step_one
+        run: |
+            echo "FOO=$(git status)" >> $GITHUB_ENV
+      - name: Use the value
+        id: step_two
+        run: |
+            echo "${{ env.FOO }}"

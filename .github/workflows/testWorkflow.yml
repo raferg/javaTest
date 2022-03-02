@@ -1,20 +1,17 @@
-name: Test Actions
+name: checkstyle stats collection
+
 on:
-  push:
+  pull_request:
     branches: [ master ]
 jobs:
-  test-stuff:
+  run-checkstyle:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0    
-      - name: Set the value
-        id: step_one
-        run: |
-            echo "FOO=$(date)" >> $GITHUB_ENV
-      - name: Use the value
-        id: step_two
-        run: |
-            echo "${{ env.FOO }}"
+      - name: Run check style
+        id: checkStyle
+        uses: raferg/checkstyle-action@master
+        with:          
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          checkstyle_config: .checkstyle/checkstyle.xml

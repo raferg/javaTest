@@ -15,33 +15,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - uses: dbelyaev/action-checkstyle@v0.5.1
         with:
-          # Full git history is needed to get a proper list of changed files within `super-linter`
-          fetch-depth: 0
-
-      - name: Run check style
-        id: checkStyle
-        uses: raferg/checkstyle-action@master
-        with:          
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
           checkstyle_config: .checkstyle/checkstyle.xml
-          tool_name: 'SPACES CHECK with checkstyle'
           level: error
           fail_on_error: true
-          filter_mode: added
-      
-      #- name: echo stuff out
-      #  run: echo "${{ steps.checkStyle.outputs.checkstyle_stats }}"
-      #  shell: bash
-      
-  test-stuff:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Set the value
-        id: step_one
-        run: |
-            echo "FOO=$(git status)" >> $GITHUB_ENV
-      - name: Use the value
-        id: step_two
-        run: |
-            echo "${{ env.FOO }}"
+          filter_mode: added      

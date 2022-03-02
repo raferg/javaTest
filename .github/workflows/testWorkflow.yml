@@ -1,7 +1,6 @@
 name: Test Actions
-
 on:
-  commit:
+  push:
     branches: [ master ]
 jobs:
   test-stuff:

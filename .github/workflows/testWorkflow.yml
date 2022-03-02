@@ -1,0 +1,22 @@
+name: Test Actions
+
+on:
+  commit:
+    branches: [ master ]
+jobs:
+  test-stuff:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          # Full git history is needed to get a proper list of changed files within `super-linter`
+          fetch-depth: 0    
+      - name: Set the value
+        id: step_one
+        run: |
+            echo "FOO=$(git status)" >> $GITHUB_ENV
+      - name: Use the value
+        id: step_two
+        run: |
+            echo "${{ env.FOO }}"

@@ -19,6 +19,16 @@ jobs:
 
       - name: List all changed files
         run: |
+          INPUT_FILTER_MODE=added
+          INPUT_LEVEL=error
+          INPUT_CHECKSTYLE_VERSION=9.2
+          INPUT_GITHUB_TOKEN=***
+          INPUT_CHECKSTYLE_CONFIG=.checkstyle/checkstyle.xml
+          INPUT_REPORTER=github-pr-review
+          INPUT_FAIL_ON_ERROR=true
+          wget -O - -q https://github.com/checkstyle/checkstyle/releases/download/checkstyle-${INPUT_CHECKSTYLE_VERSION}/checkstyle-${INPUT_CHECKSTYLE_VERSION}-all.jar > /checkstyle.jar
+
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "$file was changed"
+            exec java -jar /checkstyle.jar "${file}" -c "${INPUT_CHECKSTYLE_CONFIG}" ${OPT_PROPERTIES_FILE} -f xml
           done

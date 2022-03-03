@@ -25,9 +25,16 @@ jobs:
           file_list: ${{ steps.changed-files.outputs.all_changed_files }}
       - name: echo violations
         run: echo "${{ steps.checkStyleRaferg.outputs.total_volations }}"
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        
+      - id: 'update_worksheet'
+        uses: jroehl/gsheet.action@v1.0.0 # you can specify '@release' to always have the latest changes
         with:
-          branch: gh-pages
-          folder: output
+          spreadsheetId: 1QK5tfQH0UXqSw0VPsg1JNiDKmg4A5qEXaVaG7vtkqfw
+          commands: | # list of commands, specified as a valid JSON string
+            [
+              { "command": "addWorksheet", "args": { "worksheetTitle": "Title" }},
+              { "command": "appendData", "args": { "data": [["${GITHUB_ACTOR}", "${GITHUB_REF_NAME}", "${total_violations}"]] }},
+            ]
+        env:
+          GSHEET_CLIENT_EMAIL: ${{ secrets.GSHEET_CLIENT_EMAIL }}
+          GSHEET_PRIVATE_KEY: ${{ secrets.GSHEET_PRIVATE_KEY }}

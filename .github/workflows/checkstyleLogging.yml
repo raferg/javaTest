@@ -25,12 +25,10 @@ jobs:
           file_list: ${{ steps.changed-files.outputs.all_changed_files }}
       - name: echo violations
         run: echo "${{ steps.checkStyleRaferg.outputs.total_volations }}"
-      - id: 'update_worksheet'
-        uses: jroehl/gsheet.action@v1.0.0
+
+      - uses: floric/repo-monitor-action@v1.4.1
+        name: Update Report
         with:
-          spreadsheetId: 1QK5tfQH0UXqSw0VPsg1JNiDKmg4A5qEXaVaG7vtkqfw
-          commands: |
-            [ { "command": "appendData", "args": { "worksheetTitle": "2022", "data": [["","${{ steps.checkStyleRaferg.outputs.total_volations }}"]] }} ]
-        env:
-          GSHEET_CLIENT_EMAIL: ${{ secrets.GSHEET_CLIENT_EMAIL }}
-          GSHEET_PRIVATE_KEY: ${{ secrets.GSHEET_PRIVATE_KEY }}
+          key: total_violations
+          value: ${{ steps.checkStyleRaferg.outputs.total_volations }}
+          token: ${{ secrets.GITHUB_TOKEN }}        

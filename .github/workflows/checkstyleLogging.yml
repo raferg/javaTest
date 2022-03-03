@@ -10,6 +10,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v17.2
       - uses: raferg/checkstyle-action@master
         with:
           github_token: ${{ secrets.github_token }}
@@ -18,3 +21,4 @@ jobs:
           level: error
           fail_on_error: true
           filter_mode: added
+          file_list: ${{ steps.changed-files.outputs.all_changed_files }}

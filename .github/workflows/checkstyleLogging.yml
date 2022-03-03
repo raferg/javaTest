@@ -1,40 +1,20 @@
-name: Checkstyle with attempt at logging (**not really**)
+
+name: Checkstyle with attempt at logging
 
 on:
   pull_request:
     branches: [ master ]
-
 jobs:
-  build:
+  run-lint:
     runs-on: ubuntu-latest
-    name: Test changed-files
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - uses: raferg/action-checkstyle@v0.5.1
         with:
-          fetch-depth: 0
-
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@v17.2
-
-      - name: List all changed files
-        run: |
-          INPUT_FILTER_MODE=added
-          INPUT_LEVEL=error
-          INPUT_CHECKSTYLE_VERSION=9.2
-          INPUT_GITHUB_TOKEN=***
-          INPUT_CHECKSTYLE_CONFIG=.checkstyle/checkstyle.xml
-          INPUT_REPORTER=github-pr-review
-          INPUT_FAIL_ON_ERROR=true
-          wget -O - -q https://github.com/checkstyle/checkstyle/releases/download/checkstyle-${INPUT_CHECKSTYLE_VERSION}/checkstyle-${INPUT_CHECKSTYLE_VERSION}-all.jar > checkstyle.jar
-
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            echo "$file was changed"
-            exec java -jar checkstyle.jar "${file}" -c "${INPUT_CHECKSTYLE_CONFIG}" ${OPT_PROPERTIES_FILE} -f xml  \
-             | reviewdog -f=checkstyle \
-                -name="${INPUT_TOOL_NAME}" \
-                -reporter="${INPUT_REPORTER:-github-pr-check}" \
-                -filter-mode="${INPUT_FILTER_MODE:-added}" \
-                -fail-on-error="${INPUT_FAIL_ON_ERROR:-false}" \
-                -level="${INPUT_LEVEL}" 
-          done
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          checkstyle_config: .checkstyle/checkstyle.xml
+          level: error
+          fail_on_error: true
+          filter_mode: added

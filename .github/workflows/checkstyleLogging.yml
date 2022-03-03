@@ -26,7 +26,7 @@ jobs:
           INPUT_CHECKSTYLE_CONFIG=.checkstyle/checkstyle.xml
           INPUT_REPORTER=github-pr-review
           INPUT_FAIL_ON_ERROR=true
-          wget -O - -q https://github.com/checkstyle/checkstyle/releases/download/checkstyle-${INPUT_CHECKSTYLE_VERSION}/checkstyle-${INPUT_CHECKSTYLE_VERSION}-all.jar > /checkstyle.jar
+          wget -O - -q https://github.com/checkstyle/checkstyle/releases/download/checkstyle-${INPUT_CHECKSTYLE_VERSION}/checkstyle-${INPUT_CHECKSTYLE_VERSION}-all.jar > checkstyle.jar
 
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "$file was changed"

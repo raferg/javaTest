@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - uses: raferg/action-checkstyle@v0.5.1
+      - uses: raferg/action-checkstyle@HEAD
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review

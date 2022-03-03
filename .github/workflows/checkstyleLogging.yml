@@ -30,5 +30,11 @@ jobs:
 
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "$file was changed"
-            exec java -jar checkstyle.jar "${file}" -c "${INPUT_CHECKSTYLE_CONFIG}" ${OPT_PROPERTIES_FILE} -f xml
+            exec java -jar checkstyle.jar "${file}" -c "${INPUT_CHECKSTYLE_CONFIG}" ${OPT_PROPERTIES_FILE} -f xml  \
+             | reviewdog -f=checkstyle \
+                -name="${INPUT_TOOL_NAME}" \
+                -reporter="${INPUT_REPORTER:-github-pr-check}" \
+                -filter-mode="${INPUT_FILTER_MODE:-added}" \
+                -fail-on-error="${INPUT_FAIL_ON_ERROR:-false}" \
+                -level="${INPUT_LEVEL}" 
           done

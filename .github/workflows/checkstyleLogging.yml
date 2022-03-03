@@ -33,7 +33,7 @@ jobs:
           commands: | # list of commands, specified as a valid JSON string
             [
               { "command": "addWorksheet", "args": { "worksheetTitle": "Title" }},
-              { "command": "appendData", "args": { "data": [["${GITHUB_ACTOR}", "${GITHUB_REF_NAME}", "${total_violations}"]] }},
+              { "command": "appendData", "args": { "data": [["${GITHUB_ACTOR}", "${GITHUB_REF_NAME}", "${total_violations}"]] }}
             ]
         env:
           GSHEET_CLIENT_EMAIL: ${{ secrets.GSHEET_CLIENT_EMAIL }}

@@ -1,0 +1,19 @@
+name: Checkstyle with attempt at logging
+
+on:
+  pull_request:
+    branches: [ master ]
+jobs:
+  run-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - uses: raferg/action-checkstyle@v0.5.1
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          checkstyle_config: .checkstyle/checkstyle.xml
+          level: error
+          fail_on_error: true
+          filter_mode: added      

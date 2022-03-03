@@ -1,19 +1,24 @@
-name: Checkstyle with attempt at logging
+name: Checkstyle with attempt at logging (**not really**)
 
 on:
   pull_request:
     branches: [ master ]
+
 jobs:
-  run-lint:
+  build:
     runs-on: ubuntu-latest
+    name: Test changed-files
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - uses: raferg/action-checkstyle@v0.5.1
+      - uses: actions/checkout@v2
         with:
-          github_token: ${{ secrets.github_token }}
-          reporter: github-pr-review
-          checkstyle_config: .checkstyle/checkstyle.xml
-          level: error
-          fail_on_error: true
-          filter_mode: added      
+          fetch-depth: 0
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v17.2
+
+      - name: List all changed files
+        run: |
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            echo "$file was changed"
+          done

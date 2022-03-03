@@ -30,7 +30,7 @@ jobs:
         with:
           spreadsheetId: 1QK5tfQH0UXqSw0VPsg1JNiDKmg4A5qEXaVaG7vtkqfw
           commands: |
-            [ { "command": "appendData", "args": { "data": [["","${{ steps.checkStyleRaferg.outputs.total_volations }}"]] }} ]
+            [ { "command": "appendData", "args": { "worksheetTitle": "2022", "data": [["","${{ steps.checkStyleRaferg.outputs.total_volations }}"]] }} ]
         env:
           GSHEET_CLIENT_EMAIL: ${{ secrets.GSHEET_CLIENT_EMAIL }}
           GSHEET_PRIVATE_KEY: ${{ secrets.GSHEET_PRIVATE_KEY }}

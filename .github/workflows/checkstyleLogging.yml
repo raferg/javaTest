@@ -23,9 +23,6 @@ jobs:
           fail_on_error: true
           filter_mode: added
           file_list: ${{ steps.changed-files.outputs.all_changed_files }}
-      - name: echo violations
-        run: echo "${{ steps.checkStyleRaferg.outputs.total_volations }}"
-      
       - name: 'Upload Artifact(s)'
         uses: actions/upload-artifact@v2
         with:

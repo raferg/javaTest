@@ -7,8 +7,8 @@ public class RunMe {
     System.out.println("Hello World");  
   }
 
-	//Leading tab
-  //Trailing tab	
+  //Leading tab removed
+  //Trailing tab removed
   //Nothing rule breaking
-  //Trailing space  
+  //Trailing space removed
 }
